@@ -1,4 +1,4 @@
-/* Variabel CSS Dasar */
+/* Variabel CSS Dasar (Tema Hitam-Emas) */
 :root {
     --bg-color: #1a1a1a; /* Latar Belakang Dominan Hitam */
     --text-color: #e0e0e0; /* Teks Umum Putih/Abu-abu Muda */
@@ -13,42 +13,44 @@
 }
 
 body {
-    font-family: 'Open Sans', Arial, sans-serif; /* Font lebih modern */
+    font-family: 'Open Sans', Arial, sans-serif;
     background-color: var(--bg-color);
     color: var(--text-color);
     line-height: 1.6;
     margin: 0;
+    /* Penyesuaian untuk iOS/Safari */
+    -webkit-tap-highlight-color: transparent; 
 }
 
 /* --- HEADER (Desain Lebih Menarik) --- */
 header {
-    background: linear-gradient(to right, #4a4a4a, #8b6d21, #4a4a4a); /* Gradient Emas & Abu */
+    background: linear-gradient(to right, #4a4a4a, #8b6d21, #4a4a4a); 
     color: var(--header-text);
-    padding: 30px 20px; /* Padding lebih besar */
+    padding: 30px 20px;
     text-align: center;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4); /* Shadow lebih kuat */
-    border-bottom: 3px solid var(--primary-color); /* Garis emas di bawah */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+    border-bottom: 3px solid var(--primary-color);
 }
 
 header h1 {
-    font-family: 'Scheherazade New', serif; /* Gunakan font Arab untuk judul utama */
-    font-size: 2.5em; /* Lebih besar */
+    font-family: 'Scheherazade New', serif; 
+    font-size: 2.5em;
     font-weight: 700;
     margin-bottom: 5px;
     letter-spacing: 2px;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Shadow untuk teks */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 header p {
     font-size: 1.1em;
     font-weight: 300;
-    color: rgba(255, 255, 255, 0.8); /* Agak transparan */
+    color: rgba(255, 255, 255, 0.8);
 }
 
 /* Kontainer Utama */
 #quran-list-container {
     max-width: 800px;
-    margin: 30px auto; /* Margin lebih besar */
+    margin: 30px auto;
     padding: 0 15px;
 }
 
@@ -57,76 +59,66 @@ header p {
     display: flex;
     align-items: center;
     background-color: var(--card-bg);
-    padding: 20px; /* Padding lebih besar */
-    margin-bottom: 15px; /* Jarak antar card */
-    border-radius: 12px; /* Sudut lebih membulat */
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Shadow lebih kuat */
-    border: 1px solid var(--border-color); /* Garis tepi */
+    padding: 20px;
+    margin-bottom: 15px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    border: 1px solid var(--border-color);
     cursor: pointer;
     transition: background-color 0.3s, transform 0.2s, border-color 0.3s;
 }
 
 .surah-card:hover {
     background-color: var(--card-hover);
-    transform: translateY(-5px); /* Efek melayang */
-    border-color: var(--accent-color); /* Garis emas saat hover */
+    transform: translateY(-5px); 
+    border-color: var(--accent-color);
 }
 
 /* --- BENTUK DURIAN UNTUK NOMOR SURAH --- */
 .surah-number {
-    font-size: 1.6em; /* Lebih besar */
+    font-size: 1.6em; 
     font-weight: bold;
-    color: var(--bg-color); /* Warna teks nomor (hitam dari background body) */
-    background-color: var(--primary-color); /* Warna emas untuk latar */
+    color: transparent; /* Sembunyikan teks asli */
+    background-color: var(--primary-color);
     margin-right: 20px;
-    padding: 15px 10px; /* Padding untuk membentuk durian */
-    min-width: 60px; /* Lebih lebar */
-    height: 60px; /* Lebih tinggi */
-    display: flex; /* Untuk centering teks */
+    padding: 15px 10px;
+    min-width: 60px;
+    height: 60px;
+    display: flex;
     justify-content: center;
     align-items: center;
-    border-radius: 50% 0% 50% 0% / 50% 0% 50% 0%; /* Bentuk elips/oval seperti durian */
-    transform: rotate(45deg); /* Sedikit diputar */
+    /* Bentuk elips/oval seperti durian */
+    border-radius: 50% 0% 50% 0% / 50% 0% 50% 0%; 
+    transform: rotate(45deg);
     border: 2px solid var(--accent-color);
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
     position: relative;
-    overflow: hidden; /* Penting untuk bentuk */
+    overflow: hidden; 
 }
 
+/* Teks Nomor (Diputar balik agar lurus) */
 .surah-number::before {
-    content: attr(data-nomor); /* Konten nomor dari atribut data */
-    transform: rotate(-45deg); /* Putar kembali teks agar lurus */
+    content: attr(data-nomor); 
+    transform: rotate(-45deg); 
     position: absolute;
-    color: var(--bg-color); /* Warna teks nomor */
+    color: var(--bg-color); 
 }
-
-
-/* Adjust font size for the actual number within the durian shape */
-.surah-number {
-    font-size: 1.6em; /* You can adjust this if needed */
-}
-
-/* Hide the original number text, as we're using ::before */
-.surah-number {
-    color: transparent; /* Hide original number text */
-}
-
 
 .surah-details h3 {
     margin: 0 0 5px 0;
-    color: var(--primary-color); /* Emas untuk nama Latin */
+    color: var(--primary-color);
     font-size: 1.6em;
 }
 
 .surah-details p {
     margin: 0;
     font-size: 1em;
-    color: #b0b0b0; /* Abu-abu terang */
+    color: #b0b0b0; 
 }
 
 .surah-details .arab {
     font-family: 'Scheherazade New', serif;
-    font-size: 2em; /* Lebih besar */
+    font-size: 2em;
     font-weight: 700;
     color: var(--arab-color);
     text-align: right;
@@ -147,7 +139,7 @@ header p {
 .ayat-nomor {
     font-weight: bold;
     font-size: 1.2em;
-    color: var(--accent-color); /* Emas gelap */
+    color: var(--accent-color);
     margin-bottom: 15px;
     border-bottom: 1px dashed var(--border-color);
     padding-bottom: 10px;
@@ -155,12 +147,12 @@ header p {
 
 .text-arab {
     font-family: 'Scheherazade New', serif;
-    font-size: 2.8em; /* Lebih besar dari sebelumnya */
+    font-size: 2.8em;
     text-align: right;
     margin: 15px 0;
-    line-height: 2; /* Baris lebih renggang */
+    line-height: 2;
     color: var(--arab-color);
-    background-color: #3a3a3a; /* Latar belakang abu-abu tua untuk Arab */
+    background-color: #3a3a3a;
     padding: 15px;
     border-radius: 8px;
     border: 1px solid var(--border-color);
@@ -169,7 +161,7 @@ header p {
 
 .text-terjemah {
     font-style: italic;
-    color: #b0b0b0; /* Abu-abu terang */
+    color: #b0b0b0;
     margin-top: 20px;
     padding-top: 15px;
     font-size: 1.1em;
@@ -179,7 +171,7 @@ header p {
 /* Tombol Kembali */
 #back-button {
     padding: 12px 25px;
-    background-color: #dc3545; /* Merah untuk Aksi */
+    background-color: #dc3545;
     color: white;
     border: none;
     border-radius: 8px;
@@ -199,10 +191,10 @@ header p {
     text-align: center;
     padding: 50px;
     font-size: 1.4em;
-    color: var(--accent-color); /* Warna emas untuk pesan */
+    color: var(--accent-color);
 }
 
-/* --- MEDIA QUERIES (Responsif) --- */
+/* --- MEDIA QUERIES (Responsif HP) --- */
 @media (max-width: 600px) {
     
     header {
@@ -210,7 +202,7 @@ header p {
     }
 
     header h1 {
-        font-size: 2em; /* Kecilkan judul */
+        font-size: 2em;
     }
 
     header p {
@@ -244,7 +236,7 @@ header p {
     }
 
     .text-arab {
-        font-size: 2.2em; /* Kecilkan teks Arab agar muat di layar HP */
+        font-size: 2.2em;
         padding: 10px;
     }
     
