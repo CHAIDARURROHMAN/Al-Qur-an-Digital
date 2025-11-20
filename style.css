@@ -96,7 +96,6 @@ header p {
     overflow: hidden; 
 }
 
-/* Teks Nomor (Diputar balik agar lurus) */
 .surah-number::before {
     content: attr(data-nomor); 
     transform: rotate(-45deg); 
@@ -157,6 +156,20 @@ header p {
     border-radius: 8px;
     border: 1px solid var(--border-color);
     box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+/* --- Transliterasi Latin (BARU) --- */
+.text-latin {
+    font-family: 'Open Sans', Arial, sans-serif;
+    font-size: 1.1em;
+    font-style: normal;
+    font-weight: 400;
+    color: var(--primary-color); /* Warna Emas */
+    background-color: #333; /* Sedikit lebih gelap dari card background */
+    padding: 10px;
+    margin: 15px 0;
+    border-radius: 4px;
+    border-left: 5px solid var(--primary-color);
 }
 
 .text-terjemah {
@@ -240,6 +253,11 @@ header p {
         padding: 10px;
     }
     
+    .text-latin {
+        font-size: 1em;
+        padding: 8px;
+    }
+
     .text-terjemah {
         font-size: 0.95em;
     }
