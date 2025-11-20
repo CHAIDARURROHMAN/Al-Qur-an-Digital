@@ -1,43 +1,55 @@
 /* Variabel CSS Dasar */
 :root {
-    --bg-color: #000000; /* Latar Belakang sangat terang */
-    --text-color: #333;
-    --header-bg: #daa520; /* Biru Laut Cerah */
-    --header-text: white;
-    --card-bg: white;
-    --card-hover: #e0f7fa; /* Biru sangat muda saat hover */
-    --arab-color: #004d40; /* Hijau Gelap untuk Arab */
-    --primary-color: #007bff; /* Biru Standar untuk nomor */
-    --accent-color: #ffc107; /* Emas/Kuning untuk tombol */
+    --bg-color: #1a1a1a; /* Latar Belakang Dominan Hitam */
+    --text-color: #e0e0e0; /* Teks Umum Putih/Abu-abu Muda */
+    --header-bg: #8b6d21; /* Emas Gelap untuk Header */
+    --header-text: white; /* Teks Header Putih */
+    --card-bg: #2c2c2c; /* Latar Belakang Card Hitam Keabu-abuan */
+    --card-hover: #444444; /* Hover Card Sedikit Lebih Terang */
+    --arab-color: #ffeb3b; /* Emas Cerah untuk Teks Arab */
+    --primary-color: #ffc107; /* Emas Standard */
+    --accent-color: #d4af37; /* Emas Lebih Gelap/Kuning Keemasan */
+    --border-color: #555555; /* Warna Garis/Batas Abu-abu Tua */
 }
 
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Open Sans', Arial, sans-serif; /* Font lebih modern */
     background-color: var(--bg-color);
     color: var(--text-color);
     line-height: 1.6;
     margin: 0;
 }
 
-/* --- HEADER --- */
+/* --- HEADER (Desain Lebih Menarik) --- */
 header {
-    background-color: var(--header-bg);
+    background: linear-gradient(to right, #4a4a4a, #8b6d21, #4a4a4a); /* Gradient Emas & Abu */
     color: var(--header-text);
-    padding: 20px;
+    padding: 30px 20px; /* Padding lebih besar */
     text-align: center;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4); /* Shadow lebih kuat */
+    border-bottom: 3px solid var(--primary-color); /* Garis emas di bawah */
 }
 
 header h1 {
-    font-size: 1.8em;
+    font-family: 'Scheherazade New', serif; /* Gunakan font Arab untuk judul utama */
+    font-size: 2.5em; /* Lebih besar */
     font-weight: 700;
+    margin-bottom: 5px;
+    letter-spacing: 2px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Shadow untuk teks */
+}
+
+header p {
+    font-size: 1.1em;
+    font-weight: 300;
+    color: rgba(255, 255, 255, 0.8); /* Agak transparan */
 }
 
 /* Kontainer Utama */
 #quran-list-container {
     max-width: 800px;
-    margin: 20px auto;
-    padding: 0 10px;
+    margin: 30px auto; /* Margin lebih besar */
+    padding: 0 15px;
 }
 
 /* --- DAFTAR SURAH (Surah Card) --- */
@@ -45,106 +57,137 @@ header h1 {
     display: flex;
     align-items: center;
     background-color: var(--card-bg);
-    padding: 15px;
-    margin-bottom: 10px;
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 20px; /* Padding lebih besar */
+    margin-bottom: 15px; /* Jarak antar card */
+    border-radius: 12px; /* Sudut lebih membulat */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Shadow lebih kuat */
+    border: 1px solid var(--border-color); /* Garis tepi */
     cursor: pointer;
-    border-left: 5px solid var(--primary-color); /* Tambah garis warna di sisi */
-    transition: background-color 0.2s, transform 0.1s;
+    transition: background-color 0.3s, transform 0.2s, border-color 0.3s;
 }
 
 .surah-card:hover {
     background-color: var(--card-hover);
-    transform: translateY(-2px);
-    border-left-color: var(--accent-color); /* Ubah warna garis saat hover */
+    transform: translateY(-5px); /* Efek melayang */
+    border-color: var(--accent-color); /* Garis emas saat hover */
 }
 
+/* --- BENTUK DURIAN UNTUK NOMOR SURAH --- */
 .surah-number {
-    font-size: 1.5em;
+    font-size: 1.6em; /* Lebih besar */
     font-weight: bold;
-    color: var(--header-bg); /* Warna biru dari header */
-    margin-right: 15px;
-    padding: 10px;
-    background-color: var(--bg-color);
-    border: 2px solid var(--header-bg);
-    border-radius: 50%;
-    min-width: 40px;
-    text-align: center;
+    color: var(--bg-color); /* Warna teks nomor (hitam dari background body) */
+    background-color: var(--primary-color); /* Warna emas untuk latar */
+    margin-right: 20px;
+    padding: 15px 10px; /* Padding untuk membentuk durian */
+    min-width: 60px; /* Lebih lebar */
+    height: 60px; /* Lebih tinggi */
+    display: flex; /* Untuk centering teks */
+    justify-content: center;
+    align-items: center;
+    border-radius: 50% 0% 50% 0% / 50% 0% 50% 0%; /* Bentuk elips/oval seperti durian */
+    transform: rotate(45deg); /* Sedikit diputar */
+    border: 2px solid var(--accent-color);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    position: relative;
+    overflow: hidden; /* Penting untuk bentuk */
 }
+
+.surah-number::before {
+    content: attr(data-nomor); /* Konten nomor dari atribut data */
+    transform: rotate(-45deg); /* Putar kembali teks agar lurus */
+    position: absolute;
+    color: var(--bg-color); /* Warna teks nomor */
+}
+
+
+/* Adjust font size for the actual number within the durian shape */
+.surah-number {
+    font-size: 1.6em; /* You can adjust this if needed */
+}
+
+/* Hide the original number text, as we're using ::before */
+.surah-number {
+    color: transparent; /* Hide original number text */
+}
+
 
 .surah-details h3 {
-    margin: 0 0 3px 0;
-    color: var(--primary-color);
+    margin: 0 0 5px 0;
+    color: var(--primary-color); /* Emas untuk nama Latin */
+    font-size: 1.6em;
 }
 
 .surah-details p {
     margin: 0;
-    font-size: 0.9em;
-    color: #6c757d; /* Abu-abu untuk terjemahan Latin */
+    font-size: 1em;
+    color: #b0b0b0; /* Abu-abu terang */
 }
 
 .surah-details .arab {
     font-family: 'Scheherazade New', serif;
-    font-size: 1.8em;
+    font-size: 2em; /* Lebih besar */
     font-weight: 700;
     color: var(--arab-color);
     text-align: right;
-    line-height: 1.2;
-    margin-top: 5px;
+    line-height: 1.3;
+    margin-top: 8px;
 }
 
 /* --- DETAIL AYAT --- */
 .ayat-card {
     background-color: var(--card-bg);
-    padding: 20px;
-    margin-bottom: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    border-top: 5px solid var(--primary-color);
+    padding: 25px;
+    margin-bottom: 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    border-top: 3px solid var(--primary-color);
 }
 
 .ayat-nomor {
     font-weight: bold;
     font-size: 1.2em;
-    color: var(--primary-color);
-    margin-bottom: 10px;
-    padding-bottom: 5px;
-    display: block; /* Agar border-bottom tampil rapi */
+    color: var(--accent-color); /* Emas gelap */
+    margin-bottom: 15px;
+    border-bottom: 1px dashed var(--border-color);
+    padding-bottom: 10px;
 }
 
 .text-arab {
     font-family: 'Scheherazade New', serif;
-    font-size: 2.5em;
+    font-size: 2.8em; /* Lebih besar dari sebelumnya */
     text-align: right;
-    margin: 10px 0;
-    line-height: 1.8; /* Baris lebih renggang agar mudah dibaca */
+    margin: 15px 0;
+    line-height: 2; /* Baris lebih renggang */
     color: var(--arab-color);
-    background-color: #f0fff0; /* Latar belakang sangat lembut untuk Arab */
-    padding: 10px;
-    border-radius: 4px;
+    background-color: #3a3a3a; /* Latar belakang abu-abu tua untuk Arab */
+    padding: 15px;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2);
 }
 
 .text-terjemah {
     font-style: italic;
-    color: #495057;
-    margin-top: 15px;
-    padding-top: 10px;
-    font-size: 1em;
-    border-top: 1px solid #dee2e6;
+    color: #b0b0b0; /* Abu-abu terang */
+    margin-top: 20px;
+    padding-top: 15px;
+    font-size: 1.1em;
+    border-top: 1px solid var(--border-color);
 }
 
 /* Tombol Kembali */
 #back-button {
-    padding: 10px 20px;
+    padding: 12px 25px;
     background-color: #dc3545; /* Merah untuk Aksi */
     color: white;
     border: none;
-    border-radius: 5px;
+    border-radius: 8px;
     cursor: pointer;
-    margin-bottom: 20px;
+    margin-bottom: 25px;
     font-weight: bold;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    font-size: 1.1em;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
     transition: background-color 0.2s;
 }
 
@@ -154,54 +197,59 @@ header h1 {
 
 .loading, .error {
     text-align: center;
-    padding: 40px;
-    font-size: 1.2em;
-    color: #dc3545;
+    padding: 50px;
+    font-size: 1.4em;
+    color: var(--accent-color); /* Warna emas untuk pesan */
 }
 
 /* --- MEDIA QUERIES (Responsif) --- */
 @media (max-width: 600px) {
     
     header {
-        padding: 15px 10px;
+        padding: 20px 10px;
     }
 
     header h1 {
-        font-size: 1.5em;
+        font-size: 2em; /* Kecilkan judul */
+    }
+
+    header p {
+        font-size: 0.9em;
     }
 
     #quran-list-container {
-        margin: 10px auto;
-        padding: 0 5px;
+        margin: 15px auto;
+        padding: 0 10px;
     }
 
     /* Card Surah */
     .surah-card {
-        padding: 10px;
+        padding: 15px;
         flex-direction: column;
         align-items: flex-start;
-        border-left-width: 3px;
     }
     
     .surah-number {
-        font-size: 1.2em;
-        min-width: 30px;
-        padding: 5px;
+        font-size: 1.4em;
+        min-width: 50px;
+        height: 50px;
+        padding: 10px 8px;
         margin-right: 0;
-        margin-bottom: 10px;
+        margin-bottom: 15px;
     }
 
     /* Detail Ayat */
     .ayat-card {
-        padding: 15px;
+        padding: 20px;
     }
 
     .text-arab {
-        font-size: 2em;
+        font-size: 2.2em; /* Kecilkan teks Arab agar muat di layar HP */
+        padding: 10px;
     }
     
     .text-terjemah {
-        font-size: 0.9em;
+        font-size: 0.95em;
     }
     
     #back-button {
@@ -212,6 +260,9 @@ header h1 {
 }
 
 @media (max-width: 400px) {
+    header h1 {
+        font-size: 1.8em;
+    }
     .text-arab {
         font-size: 1.8em; 
     }
