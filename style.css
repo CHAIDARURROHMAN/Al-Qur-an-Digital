@@ -6,8 +6,8 @@
     --header-text: white;
     --card-bg: #2c2c2c;
     --card-hover: #444444;
-    --arab-color: #ffeb3b;
-    --primary-color: #ffc107;
+    --arab-color: #ffeb3b; 
+    --primary-color: #ffc107; /* Emas Standard */
     --accent-color: #d4af37;
     --border-color: #555555;
 }
@@ -18,12 +18,12 @@ body {
     color: var(--text-color);
     line-height: 1.6;
     margin: 0;
-    -webkit-tap-highlight-color: transparent;
+    -webkit-tap-highlight-color: transparent; 
 }
 
 /* --- HEADER --- */
 header {
-    background: linear-gradient(to right, #4a4a4a, #8b6d21, #4a4a4a);
+    background: linear-gradient(to right, #4a4a4a, #8b6d21, #4a4a4a); 
     color: var(--header-text);
     padding: 30px 20px;
     text-align: center;
@@ -32,7 +32,7 @@ header {
 }
 
 header h1 {
-    font-family: 'Scheherazade New', serif;
+    font-family: 'Scheherazade New', serif; 
     font-size: 2.5em;
     font-weight: 700;
     margin-bottom: 5px;
@@ -69,69 +69,44 @@ header p {
 
 .surah-card:hover {
     background-color: var(--card-hover);
-    transform: translateY(-5px);
+    transform: translateY(-5px); 
     border-color: var(--accent-color);
 }
 
-/* --- BENTUK DURIAN DENGAN DURI (Nomor Surah) --- */
+/* --- NOMOR SURAH (LINGKARAN EMAS POLOS) --- */
 .surah-number {
-    font-size: 1.5em; /* Sedikit lebih kecil agar duri lebih dominan */
+    font-size: 1.5em; 
     font-weight: bold;
-    color: var(--bg-color); /* Warna teks nomor */
-    background-color: var(--primary-color); /* Warna emas untuk latar */
+    color: var(--bg-color); 
+    background-color: var(--primary-color); 
     margin-right: 20px;
-    width: 70px; /* Ukuran dasar lingkaran */
-    height: 70px; /* Ukuran dasar lingkaran */
+    width: 70px; 
+    height: 70px; 
     display: flex;
     justify-content: center;
     align-items: center;
-    border-radius: 50%; /* Bentuk lingkaran sempurna */
+    border-radius: 50%; /* Lingkaran sempurna */
     border: 2px solid var(--accent-color);
     position: relative;
-    overflow: visible; /* Penting agar pseudo-element duri terlihat */
-    z-index: 1; /* Agar duri tidak tumpang tindih dengan teks di samping */
-    box-shadow: 0 0 10px rgba(255, 193, 7, 0.5); /* Efek glowing emas */
+    overflow: hidden; /* Kembali ke hidden */
+    z-index: 1; 
+    box-shadow: 0 0 10px rgba(255, 193, 7, 0.5); 
 }
+
+/* Pseudo-elemen AFTER dan ANIMASI PUTAR DURI DIHAPUS */
 
 .surah-number::before {
-    content: attr(data-nomor); /* Konten nomor dari atribut data */
-    color: var(--bg-color); /* Warna teks nomor */
-    z-index: 2; /* Agar nomor di atas duri */
+    content: attr(data-nomor); 
+    color: var(--bg-color); 
+    z-index: 2; 
 }
-
-/* Pseudo-elemen untuk "duri" (sekitar bentuk durian) */
-.surah-number::after {
-    content: '';
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
-    border: 2px dashed var(--accent-color); /* Duri berupa garis putus-putus emas */
-    animation: rotateDuri 8s linear infinite; /* Animasi berputar */
-    z-index: 0;
-    top: 0;
-    left: 0;
-    transform: scale(1.3); /* Ukuran duri lebih besar dari lingkaran utama */
-    opacity: 0.8;
-}
-
-/* Animasi Putar untuk Duri */
-@keyframes rotateDuri {
-    from {
-        transform: scale(1.3) rotate(0deg);
-    }
-    to {
-        transform: scale(1.3) rotate(360deg);
-    }
-}
-
 
 .surah-details {
-    flex-grow: 1;
-    display: flex; /* 🔥 Perbaikan: Gunakan flexbox di sini juga */
-    flex-direction: column; /* Tata letak kolom */
+    flex-grow: 1; 
+    display: flex; 
+    flex-direction: column; 
     justify-content: center;
-    align-items: flex-start; /* 🔥 Perbaikan: Pastikan align ke kiri untuk detail teks */
+    align-items: flex-start; 
 }
 
 .surah-details h3 {
@@ -143,24 +118,23 @@ header p {
 .surah-details p {
     margin: 0;
     font-size: 1em;
-    color: #b0b0b0;
+    color: #b0b0b0; 
 }
 
-/* 🔥 KELAS ARAB DI DAFTAR SURAH (RATA KANAN MAKSIMAL) */
+/* KELAS ARAB DI DAFTAR SURAH (RATA KANAN MAKSIMAL) */
 .surah-details .arab {
     font-family: 'Scheherazade New', serif;
     font-size: 2em;
     font-weight: 700;
     color: var(--arab-color);
-    text-align: right;
+    text-align: right; 
     line-height: 1.3;
     margin-top: 8px;
-    /* Perbaikan: ensure it takes full available width in flex item */
-    align-self: flex-end; /* 🔥 Agar elemen arab selalu rata kanan di dalam flex container */
+    align-self: flex-end; 
     direction: rtl; 
     unicode-bidi: embed; 
-    width: auto; /* 🔥 Kembalikan ke auto agar sesuai konten, flexbox akan menanganinya */
-    max-width: 100%; /* Pastikan tidak keluar batas */
+    width: auto; 
+    max-width: 100%; 
 }
 
 /* --- DETAIL AYAT --- */
@@ -182,7 +156,7 @@ header p {
     padding-bottom: 10px;
 }
 
-/* 🔥 KELAS ARAB DI DETAIL AYAT (RATA KANAN MAKSIMAL) */
+/* KELAS ARAB DI DETAIL AYAT (RATA KANAN MAKSIMAL) */
 .text-arab {
     font-family: 'Scheherazade New', serif;
     font-size: 2.8em;
@@ -274,26 +248,22 @@ header p {
     .surah-card {
         padding: 15px;
         flex-direction: column;
-        align-items: flex-start; /* 🔥 Perbaikan: Agar konten card tidak terlalu melebar */
+        align-items: flex-start; 
     }
     
     .surah-number {
-        font-size: 1.3em; /* Sedikit lebih kecil di HP */
-        min-width: 60px; /* Ukuran tetap cukup besar */
+        font-size: 1.3em; 
+        min-width: 60px; 
         height: 60px;
-        margin-bottom: 15px; /* Jarak ke bawah */
-        margin-right: 0; /* Hapus margin kanan di HP */
+        margin-bottom: 15px; 
+        margin-right: 0; 
     }
 
-    /* 🔥 Durian Duri di HP */
-    .surah-number::after {
-        transform: scale(1.2) rotate(0deg); /* Skala duri sedikit lebih kecil di HP */
-        animation: rotateDuri 6s linear infinite; /* Animasi lebih cepat di HP */
-    }
+    /* Durian Duri di HP (DIHAPUS) */
 
     .surah-details {
-        align-items: flex-start; /* 🔥 Perbaikan: Agar teks rata kiri di bagian detail Surah pada HP */
-        width: 100%; /* 🔥 Perbaikan: Memastikan detail surah mengambil lebar penuh yang tersisa */
+        align-items: flex-start; 
+        width: 100%; 
     }
 
     .surah-details h3 {
@@ -307,16 +277,16 @@ header p {
     .surah-details .arab {
         font-size: 1.8em;
         margin-top: 10px;
-        align-self: flex-end; /* 🔥 Pastikan Arab tetap rata kanan di HP */
+        align-self: flex-end; 
     }
 
     /* Detail Ayat */
     .ayat-card {
-        padding: 15px; /* Sedikit lebih kecil di HP */
+        padding: 15px; 
     }
 
     .text-arab {
-        font-size: 2em; /* Lebih kecil di HP */
+        font-size: 2em; 
         padding: 10px;
     }
     
@@ -339,6 +309,6 @@ header p {
         font-size: 1.8em;
     }
     .text-arab {
-        font-size: 1.6em; /* Lebih kecil lagi untuk layar sangat kecil */
+        font-size: 1.6em; 
     }
 }
