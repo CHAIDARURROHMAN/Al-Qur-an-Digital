@@ -88,6 +88,7 @@ function loadSurahDetail(nomorSurah, namaSurah) {
                     ayatCard.innerHTML = `
                         <div class="ayat-nomor">${surah.nomor}:${ayat.nomorAyat}</div>
                         <p class="text-arab">${ayat.teksArab}</p>
+                        <p class="text-latin">${ayat.teksLatin}</p>
                         <p class="text-terjemah">${ayat.teksIndonesia}</p> 
                     `;
                     container.appendChild(ayatCard);
