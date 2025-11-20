@@ -18,7 +18,6 @@ body {
     color: var(--text-color);
     line-height: 1.6;
     margin: 0;
-    /* Penyesuaian untuk iOS/Safari */
     -webkit-tap-highlight-color: transparent; 
 }
 
@@ -78,7 +77,7 @@ header p {
 .surah-number {
     font-size: 1.6em; 
     font-weight: bold;
-    color: transparent; /* Sembunyikan teks asli */
+    color: transparent; 
     background-color: var(--primary-color);
     margin-right: 20px;
     padding: 15px 10px;
@@ -87,7 +86,6 @@ header p {
     display: flex;
     justify-content: center;
     align-items: center;
-    /* Bentuk elips/oval seperti durian */
     border-radius: 50% 0% 50% 0% / 50% 0% 50% 0%; 
     transform: rotate(45deg);
     border: 2px solid var(--accent-color);
@@ -101,6 +99,10 @@ header p {
     transform: rotate(-45deg); 
     position: absolute;
     color: var(--bg-color); 
+}
+
+.surah-details {
+    flex-grow: 1; /* 🔥 Perbaikan: Agar detail surah mengambil sisa ruang */
 }
 
 .surah-details h3 {
@@ -117,12 +119,14 @@ header p {
 
 .surah-details .arab {
     font-family: 'Scheherazade New', serif;
-    font-size: 2em;
+    font-size: 2em; /* Sedikit lebih besar untuk di daftar */
     font-weight: 700;
     color: var(--arab-color);
-    text-align: right;
+    text-align: right; /* Pastikan rata kanan */
     line-height: 1.3;
     margin-top: 8px;
+    display: block; /* 🔥 Perbaikan: Penting agar text-align: right bekerja */
+    width: 100%; /* 🔥 Perbaikan: Ambil lebar penuh yang tersedia */
 }
 
 /* --- DETAIL AYAT --- */
@@ -147,7 +151,7 @@ header p {
 .text-arab {
     font-family: 'Scheherazade New', serif;
     font-size: 2.8em;
-    text-align: right;
+    text-align: right; /* Pastikan rata kanan */
     margin: 15px 0;
     line-height: 2;
     color: var(--arab-color);
@@ -156,16 +160,18 @@ header p {
     border-radius: 8px;
     border: 1px solid var(--border-color);
     box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2);
+    display: block; /* 🔥 Perbaikan: Penting agar text-align: right bekerja */
+    width: 100%; /* 🔥 Perbaikan: Ambil lebar penuh yang tersedia */
 }
 
-/* --- Transliterasi Latin (BARU) --- */
+/* --- Transliterasi Latin --- */
 .text-latin {
     font-family: 'Open Sans', Arial, sans-serif;
     font-size: 1.1em;
     font-style: normal;
     font-weight: 400;
-    color: var(--primary-color); /* Warna Emas */
-    background-color: #333; /* Sedikit lebih gelap dari card background */
+    color: var(--primary-color);
+    background-color: #333;
     padding: 10px;
     margin: 15px 0;
     border-radius: 4px;
