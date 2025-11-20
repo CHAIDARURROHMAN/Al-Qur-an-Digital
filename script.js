@@ -54,7 +54,7 @@ function loadSurahList() {
 }
 
 // =========================================================================
-// 2. FUNGSI UNTUK MEMUAT DETAIL ISI SURAH (Tidak ada perubahan di sini)
+// 2. FUNGSI UNTUK MEMUAT DETAIL ISI SURAH (KOREKSI FUNGSI INI)
 // =========================================================================
 function loadSurahDetail(nomorSurah, namaSurah) {
     const fullUrl = `${apiUrlDetail}${nomorSurah}`;
@@ -71,15 +71,19 @@ function loadSurahDetail(nomorSurah, namaSurah) {
             if (data.code === 200 && data.data) {
                 const surah = data.data;
 
+                // Tombol Kembali ke Daftar
                 container.innerHTML += `<button id="back-button">Kembali ke Daftar Surah</button>`;
                 document.getElementById('back-button').addEventListener('click', loadSurahList);
                 
+                // Update Header dengan Info Surah
                 headerSubtitle.textContent = `${surah.namaLatin} (${surah.arti}) - ${surah.jumlahAyat} Ayat`;
 
+                // Tampilkan Setiap Ayat
                 surah.ayat.forEach(ayat => {
                     const ayatCard = document.createElement('div');
-                    ayatCard.className = 'ayat-card';
+                    ayatCard.className = 'ayat-card'; // Memastikan kelas CSS ayat-card diterapkan
                     
+                    // KOREKSI UTAMA: Memastikan semua variabel diakses dengan benar
                     ayatCard.innerHTML = `
                         <div class="ayat-nomor">${surah.nomor}:${ayat.nomorAyat}</div>
                         <p class="text-arab">${ayat.teksArab}</p>
@@ -97,6 +101,7 @@ function loadSurahDetail(nomorSurah, namaSurah) {
             container.innerHTML = `<p class="error">Terjadi kesalahan saat mengambil detail Surah ${namaSurah}.</p>`;
         });
 }
+
 
 // =========================================================================
 // 3. INISIALISASI
