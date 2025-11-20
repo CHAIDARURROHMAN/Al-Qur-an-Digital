@@ -1,8 +1,8 @@
 /* Variabel CSS Dasar */
 :root {
-    --bg-color: #f8f9fa; /* Latar Belakang sangat terang */
+    --bg-color: #000000; /* Latar Belakang sangat terang */
     --text-color: #333;
-    --header-bg: #17a2b8; /* Biru Laut Cerah */
+    --header-bg: #daa520; /* Biru Laut Cerah */
     --header-text: white;
     --card-bg: white;
     --card-hover: #e0f7fa; /* Biru sangat muda saat hover */
