@@ -1,15 +1,15 @@
 /* Variabel CSS Dasar (Tema Hitam-Emas) */
 :root {
-    --bg-color: #1a1a1a; /* Latar Belakang Dominan Hitam */
-    --text-color: #e0e0e0; /* Teks Umum Putih/Abu-abu Muda */
-    --header-bg: #8b6d21; /* Emas Gelap untuk Header */
-    --header-text: white; /* Teks Header Putih */
-    --card-bg: #2c2c2c; /* Latar Belakang Card Hitam Keabu-abuan */
-    --card-hover: #444444; /* Hover Card Sedikit Lebih Terang */
-    --arab-color: #ffeb3b; /* Emas Cerah untuk Teks Arab */
-    --primary-color: #ffc107; /* Emas Standard */
-    --accent-color: #d4af37; /* Emas Lebih Gelap/Kuning Keemasan */
-    --border-color: #555555; /* Warna Garis/Batas Abu-abu Tua */
+    --bg-color: #1a1a1a;
+    --text-color: #e0e0e0;
+    --header-bg: #8b6d21;
+    --header-text: white;
+    --card-bg: #2c2c2c;
+    --card-hover: #444444;
+    --arab-color: #ffeb3b; 
+    --primary-color: #ffc107;
+    --accent-color: #d4af37;
+    --border-color: #555555;
 }
 
 body {
@@ -21,7 +21,7 @@ body {
     -webkit-tap-highlight-color: transparent; 
 }
 
-/* --- HEADER (Desain Lebih Menarik) --- */
+/* --- HEADER --- */
 header {
     background: linear-gradient(to right, #4a4a4a, #8b6d21, #4a4a4a); 
     color: var(--header-text);
@@ -102,7 +102,7 @@ header p {
 }
 
 .surah-details {
-    flex-grow: 1; /* 🔥 Perbaikan: Agar detail surah mengambil sisa ruang */
+    flex-grow: 1; 
 }
 
 .surah-details h3 {
@@ -117,16 +117,19 @@ header p {
     color: #b0b0b0; 
 }
 
+/* 🔥 KELAS ARAB DI DAFTAR SURAH (RATA KANAN MAKSIMAL) */
 .surah-details .arab {
     font-family: 'Scheherazade New', serif;
-    font-size: 2em; /* Sedikit lebih besar untuk di daftar */
+    font-size: 2em; 
     font-weight: 700;
     color: var(--arab-color);
-    text-align: right; /* Pastikan rata kanan */
+    text-align: right; 
     line-height: 1.3;
     margin-top: 8px;
-    display: block; /* 🔥 Perbaikan: Penting agar text-align: right bekerja */
-    width: 100%; /* 🔥 Perbaikan: Ambil lebar penuh yang tersedia */
+    display: block; 
+    width: 100%; 
+    direction: rtl; /* 🔥 Penting untuk menjamin rendering Right-to-Left */
+    unicode-bidi: embed; /* Opsional, tapi membantu */
 }
 
 /* --- DETAIL AYAT --- */
@@ -148,10 +151,11 @@ header p {
     padding-bottom: 10px;
 }
 
+/* 🔥 KELAS ARAB DI DETAIL AYAT (RATA KANAN MAKSIMAL) */
 .text-arab {
     font-family: 'Scheherazade New', serif;
     font-size: 2.8em;
-    text-align: right; /* Pastikan rata kanan */
+    text-align: right; 
     margin: 15px 0;
     line-height: 2;
     color: var(--arab-color);
@@ -160,8 +164,10 @@ header p {
     border-radius: 8px;
     border: 1px solid var(--border-color);
     box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2);
-    display: block; /* 🔥 Perbaikan: Penting agar text-align: right bekerja */
-    width: 100%; /* 🔥 Perbaikan: Ambil lebar penuh yang tersedia */
+    display: block; 
+    width: 100%; 
+    direction: rtl; /* 🔥 Penting untuk menjamin rendering Right-to-Left */
+    unicode-bidi: embed; /* Opsional, tapi membantu */
 }
 
 /* --- Transliterasi Latin --- */
