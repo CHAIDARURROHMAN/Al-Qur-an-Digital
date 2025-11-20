@@ -31,16 +31,16 @@ function loadSurahList() {
                     card.setAttribute('data-nomor', surah.nomor); 
                     
                     card.innerHTML = `
-                        <div class="surah-number">${surah.nomor}</div>
+                        <div class="surah-number" data-nomor="${surah.nomor}"></div> 
                         <div class="surah-details">
                             <h3>${surah.namaLatin}</h3>
-                            <p>${surah.arti} (${surah.jumlahAyat} ayat)</p>
+                            <p>${surah.arti} | Mulai Juz ${surah.juz} (${surah.jumlahAyat} ayat)</p>
                             <p class="arab">${surah.nama}</p>
                         </div>
                     `;
                     container.appendChild(card);
                     
-                    // Menambahkan Listener Klik pada setiap card
+                    // Menambahkan Listener Klik
                     card.addEventListener('click', () => {
                         loadSurahDetail(surah.nomor, surah.namaLatin);
                     });
@@ -51,17 +51,16 @@ function loadSurahList() {
         })
         .catch(error => {
             console.error('Error fetching data:', error);
-            container.innerHTML = `<p class="error">Gagal memuat daftar surah. Cek koneksi atau blokir CORS. Detail: ${error.message}</p>`;
+            container.innerHTML = `<p class="error">Gagal memuat daftar surah. Cek koneksi. Detail: ${error.message}</p>`;
         });
 }
 
 // =========================================================================
-// 2. FUNGSI BARU: UNTUK MEMUAT DETAIL ISI SURAH
+// 2. FUNGSI UNTUK MEMUAT DETAIL ISI SURAH
 // =========================================================================
 function loadSurahDetail(nomorSurah, namaSurah) {
     const fullUrl = `${apiUrlDetail}${nomorSurah}`;
     
-    // Tampilkan Header dan Loading Baru
     headerTitle.textContent = namaSurah;
     headerSubtitle.textContent = `Memuat isi Surah ${namaSurah}...`;
     container.innerHTML = '<p class="loading">Memuat ayat-ayat...</p>';
@@ -69,7 +68,7 @@ function loadSurahDetail(nomorSurah, namaSurah) {
     fetch(fullUrl)
         .then(response => response.json())
         .then(data => {
-            container.innerHTML = ''; // Hapus pesan memuat
+            container.innerHTML = '';
 
             if (data.code === 200 && data.data) {
                 const surah = data.data;
@@ -86,7 +85,6 @@ function loadSurahDetail(nomorSurah, namaSurah) {
                     const ayatCard = document.createElement('div');
                     ayatCard.className = 'ayat-card';
                     
-                    // 🔥 KOREKSI KUNCI: Mengganti 'terjemah' menjadi 'teksIndonesia'
                     ayatCard.innerHTML = `
                         <div class="ayat-nomor">${surah.nomor}:${ayat.nomorAyat}</div>
                         <p class="text-arab">${ayat.teksArab}</p>
