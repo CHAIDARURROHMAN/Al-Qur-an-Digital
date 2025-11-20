@@ -27,6 +27,10 @@ header {
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
+header h1 {
+    font-size: 1.8em; /* Ukuran default */
+}
+
 /* Kontainer Utama */
 #quran-list-container {
     max-width: 800px;
@@ -34,7 +38,7 @@ header {
     padding: 0 10px;
 }
 
-/* Card Surah (Daftar) */
+/* --- DAFTAR SURAH (Surah Card) --- */
 .surah-card {
     display: flex;
     align-items: center;
@@ -64,11 +68,6 @@ header {
     text-align: center;
 }
 
-.surah-details h3 {
-    margin: 0 0 5px 0;
-    color: var(--text-color);
-}
-
 .surah-details .arab {
     font-family: 'Scheherazade New', serif;
     font-size: 1.8em;
@@ -79,7 +78,7 @@ header {
     margin-top: 5px;
 }
 
-/* Styling Detail Ayat */
+/* --- DETAIL AYAT --- */
 .ayat-card {
     background-color: var(--card-bg);
     padding: 20px;
@@ -99,7 +98,7 @@ header {
 
 .text-arab {
     font-family: 'Scheherazade New', serif;
-    font-size: 2.5em;
+    font-size: 2.5em; /* Ukuran default untuk layar besar */
     text-align: right;
     margin: 10px 0;
     line-height: 1.5;
@@ -118,7 +117,7 @@ header {
 /* Tombol Kembali */
 #back-button {
     padding: 10px 15px;
-    background-color: #f44336; /* Merah */
+    background-color: #f44336; 
     color: white;
     border: none;
     border-radius: 5px;
@@ -128,13 +127,65 @@ header {
     transition: background-color 0.2s;
 }
 
-#back-button:hover {
-    background-color: #d32f2f;
+/* Media Queries: Aturan khusus untuk layar kecil (HP) */
+@media (max-width: 600px) {
+    
+    header {
+        padding: 15px 10px;
+    }
+
+    header h1 {
+        font-size: 1.5em; /* Kecilkan judul */
+    }
+
+    header p {
+        font-size: 0.9em;
+    }
+
+    #quran-list-container {
+        margin: 10px auto;
+        padding: 0 5px;
+    }
+
+    /* Card Surah */
+    .surah-card {
+        padding: 10px;
+        /* Di HP, kita buat tulisan Arabnya di bawah tulisan Latin */
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .surah-number {
+        font-size: 1.2em; /* Kecilkan nomor surah */
+        min-width: 30px;
+        padding: 5px;
+        margin-right: 0;
+        margin-bottom: 10px; /* Tambah jarak ke bawah */
+    }
+
+    /* Detail Ayat */
+    .ayat-card {
+        padding: 15px;
+    }
+
+    .text-arab {
+        font-size: 2em; /* Kecilkan teks Arab agar muat di layar HP */
+    }
+    
+    .text-terjemah {
+        font-size: 0.9em;
+    }
+    
+    #back-button {
+        display: block; /* Buat tombol kembali selebar layar */
+        width: 100%;
+        box-sizing: border-box;
+    }
 }
 
-.loading, .error {
-    text-align: center;
-    padding: 40px;
-    font-size: 1.2em;
-    color: #f44336;
+/* Media Queries: Tambahan untuk layar yang sangat kecil */
+@media (max-width: 400px) {
+    .text-arab {
+        font-size: 1.8em; 
+    }
 }
