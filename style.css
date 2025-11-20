@@ -7,9 +7,14 @@
     --card-bg: #2c2c2c;
     --card-hover: #444444;
     --arab-color: #ffeb3b; 
-    --primary-color: #ffc107; /* Emas Standard */
+    --primary-color: #ffc107; 
     --accent-color: #d4af37;
     --border-color: #555555;
+}
+
+/* 🔥 Perbaikan Utama: Terapkan Box Sizing Global untuk Stabilitas Layout */
+*, *::before, *::after {
+    box-sizing: border-box;
 }
 
 body {
@@ -50,7 +55,8 @@ header p {
 #quran-list-container {
     max-width: 800px;
     margin: 30px auto;
-    padding: 0 15px;
+    /* 🔥 Pastikan padding horizontal yang rapi */
+    padding: 0 15px; 
 }
 
 /* --- DAFTAR SURAH (Surah Card) --- */
@@ -85,15 +91,13 @@ header p {
     display: flex;
     justify-content: center;
     align-items: center;
-    border-radius: 50%; /* Lingkaran sempurna */
+    border-radius: 50%; 
     border: 2px solid var(--accent-color);
     position: relative;
-    overflow: hidden; /* Kembali ke hidden */
+    overflow: hidden; 
     z-index: 1; 
     box-shadow: 0 0 10px rgba(255, 193, 7, 0.5); 
 }
-
-/* Pseudo-elemen AFTER dan ANIMASI PUTAR DURI DIHAPUS */
 
 .surah-number::before {
     content: attr(data-nomor); 
@@ -145,6 +149,7 @@ header p {
     border-radius: 12px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
     border-top: 3px solid var(--primary-color);
+    /* 🔥 Pastikan card ayat juga menggunakan box-sizing */
 }
 
 .ayat-nomor {
@@ -173,6 +178,7 @@ header p {
     width: 100%;
     direction: rtl; 
     unicode-bidi: embed; 
+    /* 🔥 Karena ini memiliki padding dan width: 100%, box-sizing sangat penting */
 }
 
 /* --- Transliterasi Latin --- */
@@ -187,6 +193,7 @@ header p {
     margin: 15px 0;
     border-radius: 4px;
     border-left: 5px solid var(--primary-color);
+    /* 🔥 Pastikan juga menggunakan box-sizing */
 }
 
 .text-terjemah {
@@ -241,7 +248,7 @@ header p {
 
     #quran-list-container {
         margin: 15px auto;
-        padding: 0 10px;
+        padding: 0 10px; /* 🔥 Padding kiri kanan yang lebih kecil di HP */
     }
 
     /* Card Surah */
@@ -258,8 +265,6 @@ header p {
         margin-bottom: 15px; 
         margin-right: 0; 
     }
-
-    /* Durian Duri di HP (DIHAPUS) */
 
     .surah-details {
         align-items: flex-start; 
