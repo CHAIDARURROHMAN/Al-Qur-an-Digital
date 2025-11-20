@@ -1,55 +1,54 @@
-// URL API untuk mengambil daftar 114 surah
-const apiUrl = 'http://googleusercontent.com/api/v2/surat'; 
+// script.js yang Bersih dan Fokus Koneksi
+const apiUrl = 'https://equran.id/api/v2/surat'; 
 const container = document.getElementById('quran-list-container');
 
-// Fungsi utama untuk mengambil dan menampilkan daftar surah
 function loadSurahList() {
     container.innerHTML = '<p class="loading">Memuat daftar surah...</p>'; 
 
-    fetch(apiUrl)
-        .then(response => response.json())
-        .then(data => {
-            container.innerHTML = ''; // Hapus pesan memuat
+    // Menggunakan try-catch untuk penanganan error yang lebih baik
+    try {
+        fetch(apiUrl)
+            .then(response => {
+                // Tambahkan penanganan error HTTP (misal: 404 atau 500)
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                return response.json();
+            })
+            .then(data => {
+                container.innerHTML = ''; // Hapus pesan memuat
 
-            // Cek apakah data berhasil diambil (kode 200)
-            if (data.code === 200 && data.data) {
-                data.data.forEach(surah => {
-                    const card = document.createElement('div');
-                    card.className = 'surah-card';
-                    
-                    // Kita akan menggunakan nomor surah untuk fungsionalitas lanjutan di masa depan
-                    card.setAttribute('data-nomor', surah.nomor); 
-                    
-                    card.innerHTML = `
-                        <div class="surah-number">${surah.nomor}</div>
-                        <div class="surah-details">
-                            <h3>${surah.namaLatin}</h3>
-                            <p>${surah.arti} (${surah.jumlahAyat} ayat)</p>
-                            <p class="arab">${surah.nama}</p>
-                        </div>
-                    `;
-                    container.appendChild(card);
-                });
-            } else {
-                container.innerHTML = '<p class="error">Gagal memuat data surah. Respon API tidak valid.</p>';
-            }
-        })
-        .catch(error => {
-            console.error('Error fetching data:', error);
-            container.innerHTML = '<p class="error">Terjadi kesalahan koneksi. Pastikan Anda terhubung ke internet.</p>';
-        });
+                if (data.code === 200 && data.data) {
+                    data.data.forEach(surah => {
+                        const card = document.createElement('div');
+                        card.className = 'surah-card';
+                        card.setAttribute('data-nomor', surah.nomor); 
+                        
+                        card.innerHTML = `
+                            <div class="surah-number">${surah.nomor}</div>
+                            <div class="surah-details">
+                                <h3>${surah.namaLatin}</h3>
+                                <p>${surah.arti} (${surah.jumlahAyat} ayat)</p>
+                                <p class="arab">${surah.nama}</p>
+                            </div>
+                        `;
+                        container.appendChild(card);
+                    });
+                } else {
+                    container.innerHTML = '<p class="error">Gagal memuat data surah. Respon API tidak valid.</p>';
+                }
+            })
+            .catch(error => {
+                // Menampilkan error jika API diblokir atau terjadi Timeout
+                console.error('Error fetching data:', error);
+                container.innerHTML = `<p class="error">Gagal memuat. API mungkin diblokir atau Timeout. Detail: ${error.message}</p>`;
+            });
+    } catch (error) {
+        container.innerHTML = `<p class="error">Terjadi kesalahan fatal saat memulai fetch. ${error.message}</p>`;
+    }
 }
 
-// Inisialisasi: Memuat konten dan Dark Mode
+// Inisialisasi: Memuat konten
 document.addEventListener('DOMContentLoaded', () => {
-    // 1. Cek preferensi Dark Mode dari local storage
-    if (localStorage.getItem('darkMode') === 'enabled') {
-        document.body.classList.add('dark-mode');
-    }
-    
-    // 2. Hubungkan tombol toggle dengan fungsinya
-    document.getElementById('mode-toggle').addEventListener('click', toggleDarkMode);
-    
-    // 3. Muat konten Al-Qur'an
     loadSurahList();
 });
