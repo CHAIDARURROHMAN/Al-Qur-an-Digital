@@ -9,7 +9,6 @@ const headerSubtitle = document.getElementById('header-subtitle');
 // 1. FUNGSI UNTUK MEMUAT DAFTAR 114 SURAH
 // =========================================================================
 function loadSurahList() {
-    // Tampilkan Header Awal
     headerTitle.textContent = "Al-Qur'an Digital";
     headerSubtitle.textContent = "Akses 114 Surat Lengkap dengan Terjemahan Bahasa Indonesia";
     container.innerHTML = '<p class="loading">Memuat daftar surah...</p>'; 
@@ -22,7 +21,7 @@ function loadSurahList() {
             return response.json();
         })
         .then(data => {
-            container.innerHTML = ''; // Hapus pesan memuat
+            container.innerHTML = ''; 
 
             if (data.code === 200 && data.data) {
                 data.data.forEach(surah => {
@@ -34,13 +33,12 @@ function loadSurahList() {
                         <div class="surah-number" data-nomor="${surah.nomor}"></div> 
                         <div class="surah-details">
                             <h3>${surah.namaLatin}</h3>
-                            <p>${surah.arti} | Mulai Juz ${surah.juz} (${surah.jumlahAyat} ayat)</p>
+                            <p>${surah.arti} | ${surah.tempatTurun} (${surah.jumlahAyat} ayat)</p>
                             <p class="arab">${surah.nama}</p>
                         </div>
                     `;
                     container.appendChild(card);
                     
-                    // Menambahkan Listener Klik
                     card.addEventListener('click', () => {
                         loadSurahDetail(surah.nomor, surah.namaLatin);
                     });
@@ -56,7 +54,7 @@ function loadSurahList() {
 }
 
 // =========================================================================
-// 2. FUNGSI UNTUK MEMUAT DETAIL ISI SURAH
+// 2. FUNGSI UNTUK MEMUAT DETAIL ISI SURAH (Tidak ada perubahan di sini)
 // =========================================================================
 function loadSurahDetail(nomorSurah, namaSurah) {
     const fullUrl = `${apiUrlDetail}${nomorSurah}`;
@@ -73,14 +71,11 @@ function loadSurahDetail(nomorSurah, namaSurah) {
             if (data.code === 200 && data.data) {
                 const surah = data.data;
 
-                // Tombol Kembali ke Daftar
                 container.innerHTML += `<button id="back-button">Kembali ke Daftar Surah</button>`;
                 document.getElementById('back-button').addEventListener('click', loadSurahList);
                 
-                // Update Header dengan Info Surah
                 headerSubtitle.textContent = `${surah.namaLatin} (${surah.arti}) - ${surah.jumlahAyat} Ayat`;
 
-                // Tampilkan Setiap Ayat
                 surah.ayat.forEach(ayat => {
                     const ayatCard = document.createElement('div');
                     ayatCard.className = 'ayat-card';
@@ -102,7 +97,6 @@ function loadSurahDetail(nomorSurah, namaSurah) {
             container.innerHTML = `<p class="error">Terjadi kesalahan saat mengambil detail Surah ${namaSurah}.</p>`;
         });
 }
-
 
 // =========================================================================
 // 3. INISIALISASI
