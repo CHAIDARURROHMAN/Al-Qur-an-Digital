@@ -40,14 +40,6 @@ function loadSurahList() {
         });
 }
 
-// Fungsi untuk mengaktifkan/menonaktifkan Dark Mode
-function toggleDarkMode() {
-    document.body.classList.toggle('dark-mode');
-    const isDarkMode = document.body.classList.contains('dark-mode');
-    // Simpan pilihan ke local storage agar tetap aktif saat browser dibuka lagi
-    localStorage.setItem('darkMode', isDarkMode ? 'enabled' : 'disabled');
-}
-
 // Inisialisasi: Memuat konten dan Dark Mode
 document.addEventListener('DOMContentLoaded', () => {
     // 1. Cek preferensi Dark Mode dari local storage
