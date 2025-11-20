@@ -1,16 +1,17 @@
 // URL API
 const apiUrlList = 'https://equran.id/api/v2/surat';
-// Format URL untuk detail Surah: .../surat/{nomor_surat}
 const apiUrlDetail = 'https://equran.id/api/v2/surat/'; 
 const container = document.getElementById('quran-list-container');
+const headerTitle = document.getElementById('header-title');
+const headerSubtitle = document.getElementById('header-subtitle');
 
 // =========================================================================
 // 1. FUNGSI UNTUK MEMUAT DAFTAR 114 SURAH
 // =========================================================================
 function loadSurahList() {
-    // Tampilkan Header dan Loading
-    document.getElementById('header-title').textContent = "Al-Qur'an Digital";
-    document.getElementById('header-subtitle').textContent = "Akses 114 Surat Lengkap dengan Terjemahan Bahasa Indonesia";
+    // Tampilkan Header Awal
+    headerTitle.textContent = "Al-Qur'an Digital";
+    headerSubtitle.textContent = "Akses 114 Surat Lengkap dengan Terjemahan Bahasa Indonesia";
     container.innerHTML = '<p class="loading">Memuat daftar surah...</p>'; 
 
     fetch(apiUrlList)
@@ -39,7 +40,7 @@ function loadSurahList() {
                     `;
                     container.appendChild(card);
                     
-                    // 🔥🔥 INI KODE BARU: Menambahkan Listener Klik pada setiap card
+                    // Menambahkan Listener Klik pada setiap card
                     card.addEventListener('click', () => {
                         loadSurahDetail(surah.nomor, surah.namaLatin);
                     });
@@ -50,7 +51,7 @@ function loadSurahList() {
         })
         .catch(error => {
             console.error('Error fetching data:', error);
-            container.innerHTML = `<p class="error">Gagal memuat daftar surah. Cek koneksi Anda. Detail: ${error.message}</p>`;
+            container.innerHTML = `<p class="error">Gagal memuat daftar surah. Cek koneksi atau blokir CORS. Detail: ${error.message}</p>`;
         });
 }
 
@@ -61,8 +62,8 @@ function loadSurahDetail(nomorSurah, namaSurah) {
     const fullUrl = `${apiUrlDetail}${nomorSurah}`;
     
     // Tampilkan Header dan Loading Baru
-    document.getElementById('header-title').textContent = namaSurah;
-    document.getElementById('header-subtitle').textContent = `Memuat isi Surah ${namaSurah}...`;
+    headerTitle.textContent = namaSurah;
+    headerSubtitle.textContent = `Memuat isi Surah ${namaSurah}...`;
     container.innerHTML = '<p class="loading">Memuat ayat-ayat...</p>';
     
     fetch(fullUrl)
@@ -78,17 +79,18 @@ function loadSurahDetail(nomorSurah, namaSurah) {
                 document.getElementById('back-button').addEventListener('click', loadSurahList);
                 
                 // Update Header dengan Info Surah
-                document.getElementById('header-subtitle').textContent = `${surah.namaLatin} (${surah.arti}) - ${surah.jumlahAyat} Ayat`;
+                headerSubtitle.textContent = `${surah.namaLatin} (${surah.arti}) - ${surah.jumlahAyat} Ayat`;
 
                 // Tampilkan Setiap Ayat
                 surah.ayat.forEach(ayat => {
                     const ayatCard = document.createElement('div');
                     ayatCard.className = 'ayat-card';
                     
+                    // 🔥 KOREKSI KUNCI: Mengganti 'terjemah' menjadi 'teksIndonesia'
                     ayatCard.innerHTML = `
                         <div class="ayat-nomor">${surah.nomor}:${ayat.nomorAyat}</div>
                         <p class="text-arab">${ayat.teksArab}</p>
-                        <p class="text-terjemah">${ayat.terjemah}</p>
+                        <p class="text-terjemah">${ayat.teksIndonesia}</p> 
                     `;
                     container.appendChild(ayatCard);
                 });
@@ -106,7 +108,4 @@ function loadSurahDetail(nomorSurah, namaSurah) {
 // =========================================================================
 // 3. INISIALISASI
 // =========================================================================
-document.addEventListener('DOMContentLoaded', () => {
-    // Kita perlu sedikit modifikasi di index.html untuk membuat id header terpisah
-    loadSurahList();
-});
+document.addEventListener('DOMContentLoaded', loadSurahList);
